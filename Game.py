@@ -3,10 +3,14 @@
 # # Authors:
 # #     Rebecca Fleak
 # #     Cody Krutil
-# #################################################S
-import random, DrawCards
+# #################################################
+import turtle
+import random
+import DrawCards
 deck = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,'J':10,'Q':10,'K':10,'A':[1,11]}
 used = []
+drawer = turtle.Turtle()
+DrawCards.start(drawer)
 def getCard():
     decklst = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
     suit = ['Hearts','Diamonds','Clubs','Spades']
@@ -58,6 +62,8 @@ class Hand:
         return splitted
 
 def play(playerHand,name):
+    for i in playerHand.getHand():
+        DrawCards.drawingCard(drawer,i)
     print(name + "'s turn!")
     hold = True
     once = True
@@ -100,6 +106,7 @@ def play(playerHand,name):
                         single = False
                     elif user.upper() == 'HIT':
                         playerHand.hit()
+                        DrawCards.drawingCard(drawer,playerHand.getHand()[len(playerHand.getHand())-1])
                         print(playerHand.handValue())
 
         elif len(hand1.getHand()) > 0 and len(hand2.getHand()) > 0:
@@ -168,10 +175,16 @@ while state:
         state = False
     else:
         print("That isn't a number")
+count = 0
 for i in range(player_amount):
+    drawer.penup()
+    drawer.goto(-300,200-(100*count))
+    drawer.pendown()
     player = players[i]
     player[0].startHand()
+    drawer.write(player[1])
     playerScores.append(play(player[0],player[1]))
+    count += 1
 for i in range(0,len(playerScores)):
     if playerScores[i] < 22:
         if playerScores[i] > last:
@@ -182,4 +195,5 @@ if nearest == None:
     print('\nNo one wins.')
 else:
     print('\n' + players[nearest][1] + ' wins!')
+DrawCards.wn.exitonclick()
 #END

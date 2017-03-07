@@ -1,13 +1,10 @@
 import turtle
 wn = turtle.Screen()
-# wn.tracer(2)
-hand = [[2,'Hearts'],[3,'Clubs']]
-card = turtle.Turtle()
-card.pensize(2)
-card.penup()
-card.goto(-300,200)
-for i in hand:
-    print(i)
+wn.tracer(2,10)
+def start(turtle):
+    turtle.pensize(2)
+    turtle.penup()
+    turtle.goto(-300,200)
 def Rectangle(turtle):
     for i in range(2):
         turtle.pendown()
@@ -16,10 +13,10 @@ def Rectangle(turtle):
         turtle.forward(70)
         turtle.right(90)
         turtle.penup()
-def drawValue(turtle,value):
+def drawValue(turtle,card_value_used):
     turtle.seth(0)
     turtle.pendown()
-    if value[0] == 2:
+    if card_value_used == 2:
         turtle.forward(10)
         turtle.right(90)
         turtle.forward(10)
@@ -31,7 +28,7 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.penup()
         turtle.goto(turtle.xcor()-10,turtle.ycor()+20)
-    elif value[0] == 3:
+    elif card_value_used == 3:
         turtle.seth(0)
         turtle.forward(10)
         turtle.right(90)
@@ -45,7 +42,7 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.penup()
         turtle.goto(turtle.xcor(),turtle.ycor()+20)
-    elif value[0] == 4:
+    elif card_value_used == 4:
         turtle.right(90)
         turtle.forward(10)
         turtle.left(90)
@@ -53,7 +50,9 @@ def drawValue(turtle,value):
         turtle.right(90)
         turtle.backward(10)
         turtle.forward(20)
-    elif value[0] == 5:
+        turtle.penup()
+        turtle.goto(turtle.xcor()-10,turtle.ycor()+20)
+    elif card_value_used == 5:
         turtle.forward(10)
         turtle.backward(10)
         turtle.right(90)
@@ -64,7 +63,9 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.right(90)
         turtle.forward(10)
-    elif value[0] == 6:
+        turtle.penup()
+        turtle.goto(turtle.xcor(),turtle.ycor()+20)
+    elif card_value_used == 6:
         turtle.forward(10)
         turtle.backward(10)
         turtle.right(90)
@@ -75,29 +76,36 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.left(90)
         turtle.forward(10)
-    elif value[0] == 7:
+        turtle.penup()
+        turtle.goto(turtle.xcor(),turtle.ycor()+10)
+    elif card_value_used == 7:
         turtle.forward(10)
         turtle.right(105)
         turtle.forward(20)
-    elif value[0] == 8:
+        turtle.penup()
+        turtle.goto(turtle.xcor()-4.82,turtle.ycor()+19.32)
+    elif card_value_used == 8:
+        for i in range(2):
+            turtle.forward(10)
+            turtle.right(90)
+            turtle.forward(20)
+            turtle.right(90)
+        turtle.right(90)
         turtle.forward(10)
-        turtle.right(90)
-        turtle.forward(20)
-        turtle.right(90)
+        turtle.left(90)
         turtle.forward(10)
-        turtle.right(90)
-        turtle.forward(20)
-        turtle.backward(10)
-        turtle.right(90)
-        turtle.forward(10)
-    elif value[0] == 9:
+        turtle.penup()
+        turtle.goto(turtle.xcor()-10,turtle.ycor()+10)
+    elif card_value_used == 9:
         for i in range(5):
             turtle.forward(10)
             turtle.right(90)
         turtle.forward(20)
         turtle.right(90)
         turtle.forward(10)
-    elif value[0] == 10:
+        turtle.penup()
+        turtle.goto(turtle.xcor(),turtle.ycor()+20)
+    elif card_value_used == 10:
         turtle.pendown()
         turtle.right(90)
         turtle.forward(20)
@@ -107,19 +115,24 @@ def drawValue(turtle,value):
         turtle.forward(5)
         turtle.pendown()
         for i in range(2):
-            turtle.forward(10)
+            turtle.forward(5)
             turtle.right(90)
             turtle.forward(20)
             turtle.right(90)
         turtle.penup()
-    elif value[0] == 'J':
-        turtle.forward(20)
-        turtle.backward(10)
-        turtle.right(90)
-        turtle.forward(20)
-        turtle.right(90)
+        turtle.goto(turtle.xcor()-5,turtle.ycor())
+    elif card_value_used == 'J':
         turtle.forward(10)
-    elif value[0] == 'Q':
+        turtle.backward(4)
+        turtle.right(90)
+        turtle.forward(20)
+        turtle.right(90)
+        turtle.forward(6)
+        turtle.right(90)
+        turtle.forward(4)
+        turtle.penup()
+        turtle.goto(turtle.xcor(),turtle.ycor()+16)
+    elif card_value_used == 'Q':
         for i in range(2):
             turtle.forward(10)
             turtle.right(90)
@@ -131,7 +144,9 @@ def drawValue(turtle,value):
         turtle.left(10)
         turtle.pendown()
         turtle.forward(10)
-    elif value[0] == 'K':
+        turtle.penup()
+        turtle.goto(turtle.xcor()-13.93,turtle.ycor()+20.65)
+    elif card_value_used == 'K':
         turtle.right(90)
         turtle.forward(20)
         turtle.backward(10)
@@ -140,9 +155,11 @@ def drawValue(turtle,value):
         turtle.backward(13)
         turtle.right(100)
         turtle.forward(15)
-    elif value[0] == 'A':
         turtle.penup()
-        turtle.forward(8)
+        turtle.goto(turtle.xcor()-9.64,turtle.ycor()+21.49)
+    elif card_value_used == 'A':
+        turtle.penup()
+        turtle.forward(6)
         turtle.pendown()
         turtle.right(72)
         turtle.forward(22)
@@ -151,23 +168,15 @@ def drawValue(turtle,value):
         turtle.forward(22)
         turtle.backward(11)
         turtle.left(107)
-        turtle.forward(8)
+        turtle.forward(7)
+        turtle.penup()
+        turtle.goto(turtle.xcor()-12.79,turtle.ycor()+10.52)
     turtle.penup()
-def drawingCard(turtle):
+def drawingCard(turtle,card_value_used):
     turtle.setheading(0)
     Rectangle(turtle)
     turtle.goto(turtle.xcor()+5,turtle.ycor()-5)
-    drawValue(turtle,hand[0])
+    drawValue(turtle,card_value_used[0])
     turtle.goto(turtle.xcor()+25,turtle.ycor()-40)
-    drawValue(turtle,hand[0])
+    drawValue(turtle,card_value_used[0])
     turtle.goto(turtle.xcor()+30,turtle.ycor()+45)
-    turtle.setheading(0)
-    Rectangle(turtle)
-    turtle.goto(turtle.xcor()+5,turtle.ycor()-5)
-    drawValue(turtle,hand[1])
-    turtle.goto(turtle.xcor()+25,turtle.ycor()-40)
-    card.setheading(0)
-    drawValue(turtle,hand[1])
-
-drawingCard(card)
-wn.exitonclick()

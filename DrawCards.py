@@ -1,7 +1,7 @@
 import turtle
 wn = turtle.Screen()
 # wn.tracer(2)
-# hand = [['Q','Hearts'],['K','Clubs']]
+hand = [[2,'Hearts'],[3,'Clubs']]
 card = turtle.Turtle()
 card.pensize(2)
 card.penup()
@@ -29,6 +29,8 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.left(90)
         turtle.forward(10)
+        turtle.penup()
+        turtle.goto(turtle.xcor()-10,turtle.ycor()+20)
     elif value[0] == 3:
         turtle.seth(0)
         turtle.forward(10)
@@ -41,6 +43,8 @@ def drawValue(turtle,value):
         turtle.forward(10)
         turtle.right(90)
         turtle.forward(10)
+        turtle.penup()
+        turtle.goto(turtle.xcor(),turtle.ycor()+20)
     elif value[0] == 4:
         turtle.right(90)
         turtle.forward(10)
@@ -151,18 +155,17 @@ def drawValue(turtle,value):
     turtle.penup()
 def drawingCard(turtle):
     turtle.setheading(0)
-    turtle.goto(-300,200)
     Rectangle(turtle)
-    turtle.goto(-295,195)
+    turtle.goto(turtle.xcor()+5,turtle.ycor()-5)
     drawValue(turtle,hand[0])
-    turtle.goto(-275,155)
+    turtle.goto(turtle.xcor()+25,turtle.ycor()-40)
     drawValue(turtle,hand[0])
-    turtle.goto(-250, 200)
+    turtle.goto(turtle.xcor()+30,turtle.ycor()+45)
     turtle.setheading(0)
     Rectangle(turtle)
-    turtle.goto(-245,195)
+    turtle.goto(turtle.xcor()+5,turtle.ycor()-5)
     drawValue(turtle,hand[1])
-    turtle.goto(-225,155)
+    turtle.goto(turtle.xcor()+25,turtle.ycor()-40)
     card.setheading(0)
     drawValue(turtle,hand[1])
 

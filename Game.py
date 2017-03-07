@@ -4,7 +4,7 @@
 # #     Rebecca Fleak
 # #     Cody Krutil
 # #################################################S
-import random
+import random, DrawCards
 deck = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,'J':10,'Q':10,'K':10,'A':[1,11]}
 used = []
 def getCard():
@@ -173,10 +173,13 @@ for i in range(player_amount):
     player[0].startHand()
     playerScores.append(play(player[0],player[1]))
 for i in range(0,len(playerScores)):
-    if playerScores[i] <= 22:
+    if playerScores[i] < 22:
         if playerScores[i] > last:
             last = playerScores[i]
             nearest = i
 print(playerScores)
-print('\n' + players[nearest][1] + ' wins!')
+if nearest == None:
+    print('\nNo one wins.')
+else:
+    print('\n' + players[nearest][1] + ' wins!')
 #END

@@ -9,13 +9,9 @@ import random
 import DrawCards
 deck = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,'J':10,'Q':10,'K':10,'A':[1,11]}
 used = []
-print('12')
-wn = turtle.Turtle()
-print('14')
-wn.tracer(5)
+turtle.title("BlackJack")
 drawer = turtle.Turtle()
 DrawCards.start(drawer)
-turtle.title("BlackJack")
 def getCard():
     decklst = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
     suit = ['Hearts','Diamonds','Clubs','Spades']
@@ -105,7 +101,7 @@ def play(playerHand,name):
                         once = False
                 else:
                     print(playerHand)
-                    user = turtle.textinput("Option", "Hand value is " + str(playerHand.handValue()) +"\nDo you want to hit?")
+                    user = turtle.textinput("Option", "Hand value is " + str(playerHand.handValue()) +"\nDo you want to HIT or HOLDS?")
                     if user.upper() == 'HOLD':
                         hold = False
                         single = False

@@ -1,4 +1,7 @@
 import turtle
+wn = turtle.Screen()
+wn.tracer(2)
+print('Screen Made')
 def start(turtle):
     turtle.pensize(2)
     turtle.penup()
@@ -262,4 +265,4 @@ def drawingCard(turtle,card_value_used):
     turtle.goto(turtle.xcor()+17,turtle.ycor()-15)
     drawValue(turtle,card_value_used[0])
     turtle.goto(turtle.xcor()+35,turtle.ycor()+40)
-turtle.exitonclick()
+# wn.exitonclick()

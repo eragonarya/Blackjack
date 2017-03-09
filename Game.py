@@ -9,8 +9,13 @@ import random
 import DrawCards
 deck = {2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,'J':10,'Q':10,'K':10,'A':[1,11]}
 used = []
+print('12')
+wn = turtle.Turtle()
+print('14')
+wn.tracer(5)
 drawer = turtle.Turtle()
 DrawCards.start(drawer)
+turtle.title("BlackJack")
 def getCard():
     decklst = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
     suit = ['Hearts','Diamonds','Clubs','Spades']
@@ -100,7 +105,7 @@ def play(playerHand,name):
                         once = False
                 else:
                     print(playerHand)
-                    user = input("Your handvalue is: " + str(playerHand.handValue()) +"\nDo you want to hit? [HIT/HOLD]")
+                    user = turtle.textinput("Option", "Hand value is " + str(playerHand.handValue()) +"\nDo you want to hit?")
                     if user.upper() == 'HOLD':
                         hold = False
                         single = False
@@ -169,12 +174,9 @@ player_amount = None
 last = 0
 nearest = None
 while state:
-    player_amount = input("How many players are playing?[1-4]")
-    if player_amount.isdigit() and int(player_amount) < 5 and int(player_amount) > 0:
-        player_amount = int(player_amount)
-        state = False
-    else:
-        print("That isn't a number")
+    player_amount = turtle.numinput("Players","How many players are playing?",1,minval = 1,maxval = 4)
+    player_amount = int(player_amount)
+    state = False
 count = 0
 for i in range(player_amount):
     drawer.penup()
